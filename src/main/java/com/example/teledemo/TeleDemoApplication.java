@@ -16,13 +16,6 @@ public class TeleDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(TeleDemoApplication.class, args);
-
-//        try {
-//            TelegramBotsApi api = new  TelegramBotsApi(DefaultBotSession.class);
-//            api.registerBot(new TestHandler(testHandler));
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
     }
 
     @PostConstruct

@@ -13,8 +13,11 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class TestHandler extends TelegramLongPollingBot {
 
-    @Autowired
-    private UpdateHandler updateHandler;
+    private final TestService testService;
+
+    public TestHandler(TestService testService) {
+        this.testService = testService;
+    }
 
     @Override
     public String getBotUsername() {
@@ -27,10 +30,24 @@ public class TestHandler extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update){
-        if (updateHandler != null) {
-            updateHandler.handleUpdate(update, this);
-        } else {
-            log.error("업데이트핸들러 널");
+        Message message = update.getMessage();
+
+        int messageId = message.getMessageId();
+        String text = message.getText();
+
+        TestEntity testEntity = new TestEntity(messageId, text);
+        testService.saveMsg(testEntity);
+
+        log.info(message.toString());
+        if (update.hasMessage() && update.getMessage().hasText()) {
+            SendMessage sendMessage = new SendMessage();
+            sendMessage.setChatId(update.getMessage().getChatId().toString());
+            sendMessage.setText("ㅎㅎㅎㅎ");
+            try {
+                execute(sendMessage);
+            } catch (TelegramApiException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
