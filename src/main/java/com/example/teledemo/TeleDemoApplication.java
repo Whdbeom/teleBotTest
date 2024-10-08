@@ -23,6 +23,7 @@ public class TeleDemoApplication {
         try {
             TelegramBotsApi api = new TelegramBotsApi(DefaultBotSession.class);
             api.registerBot(testHandler);
+//            api.registerBot(new TestHandler());
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
