@@ -15,6 +15,7 @@ public class TestHandler extends TelegramLongPollingBot {
 
     private final TestService testService;
 
+    @Autowired
     public TestHandler(TestService testService) {
         this.testService = testService;
     }
@@ -25,7 +26,7 @@ public class TestHandler extends TelegramLongPollingBot {
     }
     @Override
     public String getBotToken() {
-        return "";
+        return "7612829411:AAHx1f0-Oj7hlCEwX_lzJaO9kcrxt71M68U";
     }
 
     @Override
