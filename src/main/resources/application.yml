@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: teleDemo
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:xe # JDBC URL, ??? ?? ??
+    username: teledemo                   # DB ????
+    password: a1234567890                   # DB ????
+    driver-class-name: oracle.jdbc.OracleDriver # JDBC ???? ????
+  jpa:
+    hibernate:
+      ddl-auto: update                       # ?? ??? ?? ??
+    show-sql: true                           # SQL ?? ?? ??
+
+logging:
+  level:
+    org.springframework: DEBUG
