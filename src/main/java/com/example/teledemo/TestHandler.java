@@ -4,8 +4,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.groupadministration.GetChat;
 import org.telegram.telegrambots.meta.api.methods.groupadministration.GetChatAdministrators;
 import org.telegram.telegrambots.meta.api.methods.groupadministration.GetChatMember;
+import org.telegram.telegrambots.meta.api.methods.groupadministration.GetChatMembersCount;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.ChatMember;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -30,7 +32,14 @@ public class TestHandler extends TelegramLongPollingBot {
 
             List<ChatMember> members = execute(new GetChatAdministrators(chatId));
             ChatMember chatMember = execute(new GetChatMember(chatId, userId));
+
+            int memberCount = execute(new GetChatMembersCount(chatId));
+
+            System.out.println("memberCount: " + memberCount);
+
             StringBuilder membersList = new StringBuilder("Group Members:\n");
+
+            Message aa = new Message();
 
             System.out.println("=====================================");
             System.out.println(chatMember.toString());
@@ -66,7 +75,7 @@ public class TestHandler extends TelegramLongPollingBot {
     }
     @Override
     public String getBotToken() {
-        return "";
+        return "7612829411:AAFarFy-g2JgIfhbJr6zQELcBjfeUqcQ8q8";
     }
 
     @Override
